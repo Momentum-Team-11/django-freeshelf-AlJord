@@ -2,5 +2,21 @@
 
 {% block content %}
 
-<h1>Something</h1>
+<h1>All Them Dang Ole Books</h1>
+
+<div>
+    {% for book in books %}
+        <br><a href="{%url 'details' pk=book.pk %}"><b>{{title}}</b></a>
+        <p>{{author}}</p>
+
+    {% csrf_token %}
+    <a href="{% url 'edit' pk=book.pk %}">Edit</a>
+    <a href="{% url 'delete' pk=book.pk %}">Delete</a>
+
+    {% endfor %}
+</div>
+
+
+
+
 {% endblock %}

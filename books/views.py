@@ -1,8 +1,21 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Book
 from .forms import BookForm
 
-# Create your views here.
+def home(request):
+    if request.user.is_authenticated:
+        return redirect('book_list') ## need html for homepage
+    return render(request, 'book/home.html')
+
+
+def check_admin_user(user):
+    return user.is_staff
+
+
+
+## @login_required should be added to every view behind login look up permission required
+## @user_passes_test(check_admin_user)
 def book_list(request):
     books = Book.objects.all()
     return render(request, 'base/book_list.html', {"books": books})
@@ -42,3 +55,7 @@ def delete_book(request, pk):
         return redirect(to='book_list')
     return render(request, "delete_book.html",{'book':book})
 
+#def show_genere(request, slug):
+    #book = Book.objects.filter(genres__slug=slug)
+
+    #return render(request, 'book/booklist.html',{'book':book})
