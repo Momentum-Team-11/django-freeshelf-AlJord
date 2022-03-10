@@ -21,21 +21,17 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path ('', books_views.book_list, name='book_list'),
     path('accounts/', include('registration.backends.simple.urls')),
-    
-    #path ('geners/<slug:slug>)
+    path ('books/add/', books_views.add_book, name='add_book'),
+    path ('books/<int:pk>/', books_views.book_detail, name='book_detail'),
+    path ('books/<int:pk>/edit/', books_views.edit_book, name ='edit'),
+    path ('books/<int:pk>/delete', books_views.delete_book, name='delete'),
+    path('books/group/<slug:slug>', books_views.group, name='group'),
 ]
+    #path ('geners/<slug:slug>)
 
 
-## create some books (Urls =blank/null=) make books, 
-# add URLS in book description once book detail page is made 
 
-## get books displayed with all data
 
-## order books recently added to the top
-
-## create bookdetail 
-
-## make sure urls are in working order/ set up html real good
 
 
 ## check phone for exapmle code pics for log in/registration

@@ -1,22 +1,21 @@
 {% extends "base.html" %}
-
 {% block content %}
 
 <h1>All Them Dang Ole Books</h1>
 
-<div>
-    {% for book in books %}
-        <br><a href="{%url 'details' pk=book.pk %}"><b>{{title}}</b></a>
-        <p>{{author}}</p>
-
-    {% csrf_token %}
-    <a href="{% url 'edit' pk=book.pk %}">Edit</a>
-    <a href="{% url 'delete' pk=book.pk %}">Delete</a>
-
-    {% endfor %}
+<div class="flex-wrap">
+<h4>Sort by:</h4>
+{% for group in groups %}
+<a href="{% url 'group' slug=group.slug %}"><button 
+    type="submit">{{ group.name }}</button></a>
+{% endfor %}
 </div>
 
-
-
-
+<div>
+    {% for book in books %}
+        <br><a href="{%url 'book_detail' pk=book.pk %}"><b>{{book.title}}</b></a>
+        <p>{{book.author}}</p>
+</div>
+    {% endfor %}
+</div>
 {% endblock %}
