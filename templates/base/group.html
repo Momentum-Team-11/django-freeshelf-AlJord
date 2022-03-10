@@ -5,11 +5,10 @@
 <h1>
 {{ group.name }}
 </h1>
+
 {% for book in books %}
-{% if book in group %}
 
-<p>{{ group.title }}</p>
+    {{ book.title }}
+    {}
 
-{% endif %}
 {% endfor %}
-
