@@ -1,0 +1,15 @@
+% extends "base.html" %}
+
+{% block content %}
+<h1>Delete Books</h1>
+<div>
+    <form action="{% url 'delete_book' pk=book.pk %}" method="POST">
+    {% csrf_token %}
+    <p>Would you like to delete {{ book.title }}?</p>
+<div>
+    <button type="submit">Delete </button><br />
+    <a href="{% url 'index' %}">Cancel</a>
+    </div>
+    </form>
+</div>
+{% endblock %}
